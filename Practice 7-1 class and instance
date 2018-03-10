@@ -1,0 +1,34 @@
+package javaPractice;
+class Triangle{
+	int length;
+	int height;
+	public Triangle(int length,int height) {
+		this.length=length;
+		this.height=height;
+	}
+	public void setLength(int length) {
+		this.length=length;
+	}
+	public void setHeight(int height) {
+		this.height=height;
+	}
+	public double getArea() {
+		return ((double)(this.length)*(double)(this.height))/2;
+	}
+	public void printTriangle() {
+		System.out.println("this triangle's length is "+this.length+" and "
+				+ "height is "+this.height);
+	}
+	
+}
+public class Pr2 {
+
+	public static void main(String[] args) {
+		Triangle tri=new Triangle(3,5);
+		tri.printTriangle();
+		System.out.println("this triangle's area is "+tri.getArea());
+		tri.setHeight(4);
+		tri.setLength(7);
+		tri.printTriangle();
+	}
+}
