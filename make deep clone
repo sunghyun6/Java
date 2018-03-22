@@ -1,0 +1,62 @@
+package javaPractice;
+
+
+class Business implements Cloneable{
+	private String company;
+	private String work;
+	public int age;
+	public Business(String company, String work,int age) {
+		this.company=company;
+		this.work=work;
+		this.age=age;
+	}
+	public void showBusinessInfo() {
+		System.out.println("회사: "+ company);
+		System.out.println("업무: "+ work);
+		System.out.println("설립: "+ age);
+	}
+	@Override
+	public Business clone() throws CloneNotSupportedException {
+		return (Business)super.clone();
+	}
+	
+}
+class PersonalInfo implements Cloneable{
+	private String name;
+	private int age;
+	private Business bz;
+	public PersonalInfo(String name,int age,String company,String work,int age2) {
+		this.name=name;
+		this.age=age;
+		bz=new Business(company,work,age2);
+	}
+	public void showPersonalInfo() {
+		System.out.println("이름: "+name);
+		System.out.println("나이: "+age);
+		bz.showBusinessInfo();
+	}
+	@Override
+	public PersonalInfo clone() throws CloneNotSupportedException {
+		PersonalInfo cpy = (PersonalInfo)super.clone();
+		cpy.bz=this.bz.clone();
+		return cpy;
+	}
+	public void changeAge(int age) {
+		bz.age=age;
+	}
+}
+class CloneCheck{
+	public static void main(String[] args) {
+		PersonalInfo p1 = new PersonalInfo("Sunghyun Yook",24,"samsung","programming",5);
+		PersonalInfo p2;
+		try {
+			p2=p1.clone();
+			p1.changeAge(25);
+			p1.showPersonalInfo();
+			p2.showPersonalInfo();
+		}
+		catch(CloneNotSupportedException e) {
+			e.printStackTrace();
+		}	
+	}
+}
